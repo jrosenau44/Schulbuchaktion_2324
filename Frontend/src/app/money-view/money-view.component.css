@@ -1,0 +1,10 @@
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #A5C0DE;
+  color: black;
+
+}
+tr{
+margin-bottom: 10px}
+td{
+  padding: 4px;
+}

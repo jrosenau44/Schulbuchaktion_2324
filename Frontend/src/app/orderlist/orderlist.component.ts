@@ -1,63 +1,62 @@
-import { Component, ViewChild } from '@angular/core';
-import { DxDataGridComponent } from 'devextreme-angular';
-import dxDataGrid from 'devextreme/ui/data_grid';
+import { Component, OnInit } from '@angular/core';
 import { Datasource } from '../datasources/datasource';
 import { OrderlistService } from '../service/orderlist.service';
-import { SubjectService } from '../service/subject.service';
-
 
 @Component({
   selector: 'app-orderlist',
   templateUrl: './orderlist.component.html',
   styleUrls: ['./orderlist.component.css']
 })
-export class OrderlistComponent {
+export class OrderlistComponent implements OnInit {
+  public items: any[] = []; // Define the items array
+  public filteredItems: any[] = []; // Array to hold the filtered items
+  public searchTermSubject: string = ''; // Search term from the input field
+  public searchTermTitle: string = '';
+  public searchTermEbook: string = '';
+  public searchTermEbookPlus: string = '';
+  public searchTermTeacherCopy: string = '';
+  public searchTermClass: string = '';
+  public searchTermCount: string = '';
+  public dataSource: Datasource<OrderlistService>;
 
-  selectedItemKeys: any[] = [];
+  constructor(private orderlistService: OrderlistService) {
+    this.dataSource = new Datasource<OrderlistService>(orderlistService);
 
-  dataSource: Datasource<OrderlistService>;
-  @ViewChild(DxDataGridComponent, { static: false }) dataGrid?: DxDataGridComponent;
-  constructor(private orderlstService: OrderlistService) {
-    this.dataSource = new Datasource(orderlstService);
-    this.cloneIconClick = this.cloneIconClick.bind(this);
   }
 
-  selectionChanged(data: any) {
-    this.selectedItemKeys = data.selectedRowKeys;
-  }
-
-  deleteRecords() {
-    this.selectedItemKeys.forEach((key: any) => {
-      this.dataSource.store().remove(key);
+  ngOnInit() {
+    this.dataSource.load().then(data => {
+      this.items = data; // Populate the items array with data from the service
+      this.filteredItems = this.items; // Initially, all items are displayed
     });
-    this.dataSource.reload().then(() => {
-      this.dataGrid?.instance.refresh()
-    });
-    this.selectedItemKeys = [];
   }
-
-  clearSorting() {
-    this.dataGrid?.instance.clearSorting();
-  }
-
-  isCloneIconVisible(e: any) {
-    return !e.row.isEditing;
-  }
-
-  cloneIconClick(e: any) {
-    const clonedItem = Object.assign({}, e.row.data);
-
-    // need insert route for this operation, will work if implemented
-    e.component.getDataSource().store().insert(clonedItem);
-
-    e.component.getDataSource().reload();
-
-    e.component.refresh(true);
-    e.event.preventDefault();
+  filterItems() {
+    if (
+        this.searchTermSubject === '' &&
+        this.searchTermTitle === '' &&
+        this.searchTermEbook === '' &&
+        this.searchTermEbookPlus === '' &&
+        this.searchTermTeacherCopy === '' &&
+        this.searchTermClass === '' &&
+        this.searchTermCount === ''
+    ) {
+      // If all search terms are empty, display all items
+      this.filteredItems = this.items;
+    } else {
+      // Otherwise, apply filtering based on search terms
+      this.filteredItems = this.items.filter(item =>
+          (this.searchTermSubject === '' || item.book.subject.name.toLowerCase().includes(this.searchTermSubject.toLowerCase())) &&
+          (this.searchTermTitle === '' || item.book.shortTitle.toLowerCase().includes(this.searchTermTitle.toLowerCase())) &&
+          (this.searchTermEbook === '' || item.ebook.toString().toLowerCase() === this.searchTermEbook.toString().toLowerCase()) &&
+          (this.searchTermEbookPlus === '' || item.ebookPlus.toString() === this.searchTermEbookPlus) &&
+          (this.searchTermTeacherCopy === '' || item.teacherCopy.toString() === this.searchTermTeacherCopy) &&
+          (this.searchTermClass === '' || item.schoolClass.name.toLowerCase().includes(this.searchTermClass.toLowerCase())) &&
+          (this.searchTermCount === '' || item.count.toString().includes(this.searchTermCount))
+      );
+    }
   }
 
 
 
 
 }
-

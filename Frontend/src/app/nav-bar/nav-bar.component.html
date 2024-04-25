@@ -5,13 +5,17 @@
       <span>Schulbuchaktion</span>
     </div>
 
-    <div *ngFor="let item of navItems">
-      <div *ngIf="item.name | showMenuItem: userService.user.role.id.toString()">
-        <a routerLink="{{item.path}}" class="nav-menu-item">
-          {{item.text}}
-        </a>
-      </div>
-    </div>
+    <div class="nav-items" *ngFor="let item of navItems">
+      <div  *ngIf="item.name | showMenuItem: userService.user.role.id.toString()">
+        <a routerLink="{{item.path}}" class="nav-menu-item" role="presentation">
+          <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">          {{item.text}}
+          </button>
+         <!-- {{item.text}} -->
+    </a>
+  </div>
+</div>
+
+
 
     <!--<a routerLink="/bestelluebersicht">Bestellungen</a>
     <a routerLink="/klassenuebersicht">Klassen</a>

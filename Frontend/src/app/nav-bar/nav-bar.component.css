@@ -1,19 +1,20 @@
-.wrapper {
+.bar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.bar {
-  margin: 5px 5px 5px 5px;
+.nav-items {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #232323;
-  border-radius: 10px;
-  width: 99vw;
+  gap: 10px;
 }
+
+.logout {
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: -9px;
+}
+
+
 
 .title {
   display: flex;
@@ -31,45 +32,42 @@
 .bar a {
   color: white;
   text-decoration: none;
-  padding: 14px 16px;
+  padding: 7px 5px;
+  margin-top: 2px;
   font-size: 17px;
   display: flex;
   justify-content: center;
+
 }
 
 
 .bar a:hover {
   text-align: left;
-  background-color: #417bed;
-  text-decoration: underline;
-  border-radius: 10px;
+
 
 }
 .bar a:focus {
   color: #417bed; /* gewünschte Textfarbe */
-  text-decoration: underline; /* Unterstrich hinzufügen */
+  text-decoration: none; /* Unterstrich hinzufügen */
   font-weight: bold;
   text-decoration-thickness: 2px; /* gewünschte Dicke des Unterstrichs */
-  text-underline-offset: 6px; /* Abstand des Unterstrichs vom Text */
+  text-underline-offset: 2px; /* Abstand des Unterstrichs vom Text */
 }
 
 .bar a:focus:hover{
-  color: white;
 }
 
 a.active span {
   color: #9fbcdc;
-  border-bottom: 4px solid #9fbcdc;
+  border-bottom: 10px solid #9fbcdc;
+
 }
-.logout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .logout span {
   color: white;
   margin-right: 10px;
+
 }
 .dx-button {
 
@@ -86,6 +84,7 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
+  margin-top: 2px;
   margin-bottom: 2px;
 }
+

@@ -1,29 +1,22 @@
-<h1>Geldübersicht</h1>
-<dx-data-grid
-  [dataSource]="dataSource"
-  [allowColumnResizing]="true"
-  [allowColumnReordering]="true"
-  [columnHidingEnabled]="true"
-  [columnAutoWidth]="true"
->
-  <dxi-column dataField="year" caption="Jahr" dataType="number"></dxi-column>
-  <dxi-column dataField="priceInclusiveEbook" caption="Preis inklusive Ebook" width="100" dataType="number"></dxi-column>
-  <dxi-column dataField="priceEbook" caption="Preis Ebook" width="100" dataType="number"></dxi-column>
-  <dxi-column dataField="priceEbookPlus" caption="Preis Ebook Plus" width="100" dataType="number"></dxi-column>
-  <dxi-column dataField="book.shortTitle" caption="Titel" dataType="string"></dxi-column>
+<script src="../model/schoolclass.ts"></script><h1>Geldübersicht</h1>
 
-  <dxo-sorting mode="multiple"></dxo-sorting> <!-- single or multiple -->
-  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-  <dxo-filter-row [visible]="true"></dxo-filter-row>
-  <dxo-search-panel [visible]="true"></dxo-search-panel>
-  <dxo-paging [pageSize]="10"></dxo-paging>
-
-  <dxo-pager
-    [showPageSizeSelector]="true"
-    [allowedPageSizes]="[5, 10, 20, 50]"
-    [showInfo]="true"
-  ></dxo-pager>
-  <!-- Maybe add delete here later, dont know if it is needed in money-view -->
-  <dxo-group-panel [visible]="true"></dxo-group-panel>
-  <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-</dx-data-grid>
+<table class="table table-striped" style="width:100%">
+  <thead class="thead-dark">
+  <tr>
+    <th >Jahr</th>
+    <th>Preis inklusive Ebook</th>
+    <th>Preis Ebook</th>
+    <th>Preis Ebook Plus</th>
+    <th>Titel</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of items">
+    <td>{{ item.year }}</td>
+    <td>{{ item.priceInclusiveEbook }}</td>
+    <td>{{ item.priceEbook }}</td>
+    <td>{{ item.priceEbookPlus }}</td>
+    <td>{{ item.book.shortTitle }}</td>
+  </tr>
+  </tbody>
+</table>

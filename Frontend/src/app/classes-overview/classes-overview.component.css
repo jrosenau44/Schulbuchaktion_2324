@@ -44,3 +44,28 @@
 .dropdown:hover .dropbtn {
   background-color: cornflowerblue;
 }
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #A5C0DE;
+  color: black;
+
+}
+tr{
+  margin-bottom: 10px}
+td{
+  padding: 4px;
+}
+input[type="text"] {
+  width: 40%;
+  padding: 5px 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: 0.5s;
+  font-size: small;
+
+}
+
+input[type="text"]:focus {
+  border: 2px solid #555;
+}
