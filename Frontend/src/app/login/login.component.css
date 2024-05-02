@@ -2,12 +2,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
+
 
 .wave {
   position: fixed;
@@ -27,11 +29,13 @@ body {
   /*padding: 0 2rem;*/
 }
 
+
 .img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
+
 
 .login-content {
   display: flex;
@@ -44,12 +48,60 @@ body {
   width: 300px;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .form {
-  width: 360px;
+  position: absolute;
+  top: 44%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  width: 1050px; /* Decreased width */
+  background-color: #999999;
+  padding: 50px; /* Decreased padding */
+  margin: 40px;
+  border-radius: 20px;
+  border: 1px solid ;
+  color: #a4bfde;
+  font-family: Abel Regular, Arial, Helvetica, sans-serif;
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+
+
+.title{
+  font-weight: bold;
+  font-style: italic;
+  color: #ffffff !important;
+  font-family: "arial", serif;
+  font-size: 3em;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  animation: animtext 2s steps(80, end);
+  transition: all cubic-bezier(0.1, 0.7, 1.0, 0.1);
+  cursor: none;
+  caret-color: transparent;
+}
+
+@keyframes animtext {
+  from {
+    width: 0;
+    transition: all 2s ease-in-out;
+  }
 }
 
 .login-content img {
   height: 100px;
+  padding: 10px;
 }
 
 
@@ -58,19 +110,14 @@ body {
   color: black;
 }
 
-/*.login-content h2{*/
-/*  margin: 15px 0;*/
-/*  color: #333;*/
-/*  text-transform: uppercase;*/
-/*  font-size: 2.9rem;*/
-/*}*/
+
 
 .login-content .input-div {
   position: relative;
   display: grid;
-  grid-template-columns: 7% 93%;
-  margin: 25px 0;
-  padding: 5px 0;
+  grid-template-columns: 93%;
+  margin: 5px 0;
+  padding: 5px;
   border-bottom: 2px solid #d9d9d9;
 }
 
@@ -92,6 +139,7 @@ body {
 .input-div > div {
   position: relative;
   height: 45px;
+  margin-bottom: 20px;
 }
 
 .input-div > div > h5 {
@@ -108,7 +156,7 @@ body {
   content: '';
   position: absolute;
   bottom: -2px;
-  width: 0%;
+  width: 0;
   height: 2px;
   background-color: #38d39f;
   transition: .4s;
@@ -128,11 +176,16 @@ body {
 
 .input-div.focus > div > h5 {
   top: -5px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .input-div.focus > .i > i {
   color: #38d39f;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
 }
 
 .input-div > div > input {
@@ -145,13 +198,31 @@ body {
   outline: none;
   background: none;
   padding: 0.5rem 0.7rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: Abel Regular, Arial, Helvetica, sans-serif;
-  color: black;
+  color: white;
 }
 
 .input-div.pass {
   margin-bottom: 4px;
+}
+
+.input-div.pass .div {
+  display: flex;
+  align-items: center;
+}
+
+.input-div.pass button {
+  margin-left: 100%; /* Adjust as needed */
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.bi{
+  margin-left: 105%;
+  cursor: pointer;
+  caret-color: transparent;
+
 }
 
 a {
@@ -190,14 +261,17 @@ a:hover {
 
 
 button {
+  margin-top: 35px; /* Increased top margin */
+  margin-left: auto;
+  margin-right: auto;
   font-family: Abel Regular, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: #ffffff;
-  background-color: black;
+  color:#999 ;
+  background-color: #ffffff;
   padding: 10px 31px;
-  border: solid #000000 1px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border: solid #FFFFFF 1px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
   border-radius: 50px;
   transition: 803ms;
   transform: translateY(0);
@@ -206,15 +280,27 @@ button {
   align-items: center;
   cursor: pointer;
 }
-
-button:hover {
-  transition: 803ms;
-  padding: 10px 40px;
-  transform: translateY(-0px);
-  background-color: #cfe6ff;
-  color: #000000;
-  border: solid 1px black;
+button:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 10px;
+  transition: 0.5s;
 }
+
+button:hover{
+  padding-right: 40px;
+  padding-left:24px;
+  background-color: #a4bfde;
+  color: #ffffff;
+  border: solid 1px white;
+}
+
+button:hover:after {
+  opacity: 1;
+  right: 20px;
+}
+
 
 
 
@@ -233,7 +319,7 @@ button:hover {
   background-color: black;
   padding: 10px 31px;
   border: solid #000000 1px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
   border-radius: 50px;
   transition: 803ms;
   transform: translateY(0);
@@ -243,5 +329,55 @@ button:hover {
   cursor: pointer;
 
 }
+
+.bottom-image {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 25px;
+  margin-left: 600px; /* Increased margin-left */
+  margin-bottom: 12px;
+}
+.bottom-image2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 27px;
+  margin-left: 650px; /* Increased margin-left */
+  margin-bottom:12px;
+}
+
+.bottom-image3{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 30px;
+  margin-left: 700px; /* Increased margin-left */
+  margin-bottom: 13px;
+}
+
+.bottom-image4{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 30px;
+  margin-left: 750px; /* Increased margin-left */
+  margin-bottom: 12px;
+}
+
+.bottom-image5{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 30px;
+  margin-left: 800px; /* Increased margin-left */
+  margin-bottom: 12px;
+}
+
 
 

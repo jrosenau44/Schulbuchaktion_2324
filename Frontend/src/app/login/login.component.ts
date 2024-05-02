@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  hidePassword = true;
+
 
   constructor(private router: Router, private userService: UserService) {
     if (userService.loggedIn) {
@@ -29,6 +31,7 @@ export class LoginComponent {
     });
   }
 
+
   async login() {
     try {
       const user = await this.userService.login(this.email, this.password);
@@ -41,5 +44,9 @@ export class LoginComponent {
     } catch (e) {
       this.showAlert();
     }
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 }
