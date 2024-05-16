@@ -11,12 +11,18 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of items">
+  <tr *ngFor="let item of pagedItems">
     <td>{{ item.year }}</td>
     <td>{{ item.priceInclusiveEbook }}</td>
     <td>{{ item.priceEbook }}</td>
     <td>{{ item.priceEbookPlus }}</td>
     <td>{{ item.book.shortTitle }}</td>
   </tr>
+
+  <div class="pagination-container">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"> < </button>
+    <span>{{currentPage}}</span>
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === items.length / pageSize"> > </button>
+  </div>
   </tbody>
 </table>
