@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { Component, OnInit } from '@angular/core';
 import { Datasource } from '../datasources/datasource';
 import { UserService } from '../service/user.service';
 
@@ -8,34 +7,17 @@ import { UserService } from '../service/user.service';
   templateUrl: './manage-users.component.html',
   styleUrls: ['./manage-users.component.css']
 })
-
-export class ManageUsersComponent {
-
-  selectedItemKeys: any[] = [];
-
-  dataSource: Datasource<UserService>;
-  @ViewChild(DxDataGridComponent, { static: false }) dataGrid?: DxDataGridComponent;
+export class ManageUsersComponent implements OnInit {
+  public items: any[] = []; // Define the items array
+  public dataSource: Datasource<UserService>;
 
   constructor(private userService: UserService) {
-    this.dataSource = new Datasource(userService)
+    this.dataSource = new Datasource<UserService>(userService);
   }
 
-  selectionChanged(data: any) {
-    this.selectedItemKeys = data.selectedRowKeys;
-  }
-
-  deleteRecords() {
-    this.selectedItemKeys.forEach((key: any) => {
-      this.dataSource.store().remove(key);
+  ngOnInit() {
+    this.dataSource.load().then(data => {
+      this.items = data; // Assuming the load() method returns a Promise
     });
-    this.dataSource.reload().then(() => {
-      this.dataGrid?.instance.refresh()
-    });
-    this.selectedItemKeys = [];
   }
-
-  clearSorting() {
-    this.dataGrid?.instance.clearSorting();
-  }
-
 }

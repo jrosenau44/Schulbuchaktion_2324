@@ -4,3 +4,10 @@
   position: relative;
   z-index: 9000;
 }
+
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #A5C0DE;
+  color: black;
+
+}
