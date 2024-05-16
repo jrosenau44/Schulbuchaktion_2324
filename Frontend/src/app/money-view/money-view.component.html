@@ -19,10 +19,21 @@
     <td>{{ item.book.shortTitle }}</td>
   </tr>
 
-  <div class="pagination-container">
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"> < </button>
-    <span>{{currentPage}}</span>
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === items.length / pageSize"> > </button>
-  </div>
+
   </tbody>
 </table>
+<div class="navigation">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" [class.active]="true">
+        <a class="page-link">{{ currentPage }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === maxPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
