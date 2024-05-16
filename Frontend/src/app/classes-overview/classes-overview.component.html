@@ -11,9 +11,13 @@
     <th>Repetent</th>
     <th>Budget</th>
     <th>verwendetes Budget</th>
+    <th> Bearbeiten</th>
+    <th> Löschen </th>
   </tr>
   </thead>
+
   <tbody>
+
   <tr *ngFor="let item of filteredItems">
     <td>{{ item.year }}</td>
     <td>{{ item.name }}</td>
@@ -23,4 +27,5 @@
     <td>{{ item.usedBudget}}</td>
   </tr>
   </tbody>
+
 </table>
