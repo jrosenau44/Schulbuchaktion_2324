@@ -1,18 +1,34 @@
 <h1>Klassenüberischt</h1>
 
-<table class="table table-striped" style="width:100%" >
+<table class="table table-striped" style="width:100%">
   <thead class="thead-dark">
   <tr>
-    <th>JG</th>
-    <th>Name
-      <input type="text" [(ngModel)]="searchTerm" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;">
+    <th>JG
+      <input (input)="filterItems()" [(ngModel)]="searchTermYear" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
     </th>
-    <th>Schüler</th>
-    <th>Repetent</th>
-    <th>Budget</th>
-    <th>verwendetes Budget</th>
+    <th>Name
+      <input (input)="filterItems()" [(ngModel)]="searchTermName" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
+    </th>
+    <th>Schüler
+      <input (input)="filterItems()" [(ngModel)]="searchTermStudentAmount" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
+    </th>
+    <th>Repetent
+      <input (input)="filterItems()" [(ngModel)]="searchTermRepetent" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
+    </th>
+    <th>Budget
+      <input (input)="filterItems()" [(ngModel)]="searchTermBudget" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
+    </th>
+    <th>verwendetes Budget
+      <input (input)="filterItems()" [(ngModel)]="searchTermUsedBudget" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             type="text">
+    </th>
     <th> Bearbeiten</th>
-    <th> Löschen </th>
+    <th> Löschen</th>
   </tr>
   </thead>
 

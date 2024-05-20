@@ -10,25 +10,13 @@
       <input type="text" [(ngModel)]="searchTermTitle" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;">
     </th>
     <th>Ebook
-      <select [(ngModel)]="searchTermEbook" (change)="filterItems()" style="width: 50%; margin-top: 10px;">
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
+      <input type="text" [(ngModel)]="searchTermEbook" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;" >
     </th>
     <th>Ebook Plus
-      <select [(ngModel)]="searchTermEbookPlus" (change)="filterItems()" style="width: 50%; margin-top: 10px;">
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
+      <input type="text" [(ngModel)]="searchTermEbookPlus" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;">
     </th>
     <th>Lehrerexemplar
-      <select [(ngModel)]="searchTermTeacherCopy" (change)="filterItems()" style="width: 50%; margin-top: 10px;">
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
+      <input type="text" [(ngModel)]="searchTermTeacherCopy" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;" >
     </th>
     <th>Klasse
       <input type="text" [(ngModel)]="searchTermClass" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;">
@@ -49,5 +37,6 @@
     <td *ngIf="item.schoolClass.name">{{ item.schoolClass.name }}</td>
     <td *ngIf="item.count !== null">{{ item.count }}</td>
   </tr>
+
   </tbody>
 </table>

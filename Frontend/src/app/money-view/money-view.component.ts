@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Datasource } from '../datasources/datasource';
-import { MoneylistService } from '../service/moneylist.service';
+import {Component, OnInit} from '@angular/core';
+import {Datasource} from '../datasources/datasource';
+import {MoneylistService} from '../service/moneylist.service';
 
 @Component({
   selector: 'app-money-view',
@@ -9,11 +9,18 @@ import { MoneylistService } from '../service/moneylist.service';
 })
 
 export class MoneyViewComponent implements OnInit {
-  public items: any[] = []; // Definieren Sie hier den Typ Ihrer Elemente
+  public originalItems: any[] = [];
+  public items: any[] = [];
+  public pagedItems: any[] = [];
+  public searchTermYear: string = '';
+  public searchTermPriceInclusiveEbook: string = '';
+  public searchTermPriceEbook: string = '';
+  public searchTermPriceEbookPlus: string = '';
+  public searchTermTitle: string = '';
   public dataSource: Datasource<MoneylistService>;
-  public pagedItems: any[] = []; // This will hold the items for the current page
-  public pageSize: number = 10; // Number of items per page
-  public currentPage: number = 1; // Current page number
+
+  public pageSize: number = 10;
+  public currentPage: number = 1;
 
   constructor(private moneylistService: MoneylistService) {
     this.dataSource = new Datasource<MoneylistService>(moneylistService);
@@ -21,8 +28,10 @@ export class MoneyViewComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.load().then(data => {
-      this.items = data; // Angenommen, die load() Methode gibt ein Promise zurück
+      this.originalItems = data;
+      this.items = [...this.originalItems];
       this.paginate();
+      this.filterItems();
     });
   }
 
@@ -37,4 +46,14 @@ export class MoneyViewComponent implements OnInit {
     this.paginate();
   }
 
+  filterItems() {
+    this.items = this.originalItems.filter(item =>
+      (this.searchTermYear === '' || item.year.toString().includes(this.searchTermYear)) &&
+      (this.searchTermPriceInclusiveEbook === '' || item.priceInclusiveEbook.toString().includes(this.searchTermPriceInclusiveEbook)) &&
+      (this.searchTermPriceEbook === '' || item.priceEbook.toString().includes(this.searchTermPriceEbook)) &&
+      (this.searchTermPriceEbookPlus === '' || (item.priceEbookPlus ? item.priceEbookPlus.toString().includes(this.searchTermPriceEbookPlus) : false)) &&
+      (this.searchTermTitle === '' || item.book.shortTitle.toLowerCase().includes(this.searchTermTitle.toLowerCase()))
+    );
+    this.paginate();
+  }
 }

@@ -19,6 +19,7 @@ import { ShowMenuItemPipe } from './nav-bar/nav-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 
+
 @NgModule({
   declarations: [
     MoneyViewComponent,
@@ -33,6 +34,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     NavBarComponent,
     ShowMenuItemPipe,
     ManageUsersComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
