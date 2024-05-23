@@ -1,36 +1,40 @@
 <h1>Manage Users</h1>
 
-<table class="table table-striped" style="width:100%">
+<table class="table table-striped" style="width:100%" >
   <thead class="thead-dark">
   <tr>
-    <th>
-      First Name
-      <input (input)="filterItems()" [(ngModel)]="searchTermFirstName" placeholder="Search" type="text">
-    </th>
-    <th>
-      Last Name
-      <input (input)="filterItems()" [(ngModel)]="searchTermLastName" placeholder="Search" type="text">
-    </th>
-    <th>
-      Email
-      <input (input)="filterItems()" [(ngModel)]="searchTermEmail" placeholder="Search" type="text">
-    </th>
-    <th>
-      Role
-      <input (input)="filterItems()" [(ngModel)]="searchTermRole" placeholder="Search" type="text">
-    </th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Role</th>
     <th>Options</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of filteredItems">
+  <tr *ngFor="let item of pagedItems">
     <td>{{ item.firstName }}</td>
     <td>{{ item.lastName }}</td>
     <td>{{ item.email }}</td>
-    <td>{{ item.role.name }}</td>
+    <td>{{ item.role }}</td>
     <td>
-
+      <!-- Add options here -->
     </td>
   </tr>
   </tbody>
 </table>
+
+<div class="navigation">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" [class.active]="true">
+        <a class="page-link">{{ currentPage }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === maxPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,28 +1,13 @@
-<h1>Geldübersicht</h1>
+<script src="../model/schoolclass.ts"></script><h1>Geldübersicht</h1>
 
 <table class="table table-striped" style="width:100%">
   <thead class="thead-dark">
   <tr>
-    <th>Jahr
-      <input type="text" (input)="filterItems()" [(ngModel)]="searchTermYear" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             >
-    </th>
-    <th>Preis inklusive Ebook
-      <input (input)="filterItems()" [(ngModel)]="searchTermPriceInclusiveEbook" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             type="text">
-    </th>
-    <th>Preis Ebook
-      <input (input)="filterItems()" [(ngModel)]="searchTermPriceEbook" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             type="text">
-    </th>
-    <th>Preis Ebook Plus
-      <input (input)="filterItems()" [(ngModel)]="searchTermPriceEbookPlus" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             type="text">
-    </th>
-    <th>Titel
-      <input (input)="filterItems()" [(ngModel)]="searchTermTitle" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             type="text">
-    </th>
+    <th >Jahr</th>
+    <th>Preis inklusive Ebook</th>
+    <th>Preis Ebook</th>
+    <th>Preis Ebook Plus</th>
+    <th>Titel</th>
   </tr>
   </thead>
   <tbody>
@@ -34,10 +19,21 @@
     <td>{{ item.book.shortTitle }}</td>
   </tr>
 
-  <div class="pagination-container">
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"> <</button>
-    <span>{{currentPage}}</span>
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === items.length / pageSize"> ></button>
-  </div>
+
   </tbody>
 </table>
+<div class="navigation">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" [class.active]="true">
+        <a class="page-link">{{ currentPage }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === maxPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

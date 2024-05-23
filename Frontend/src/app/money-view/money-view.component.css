@@ -8,58 +8,33 @@ margin-bottom: 10px}
 td{
   padding: 4px;
 }
-button {
-  background-color: grey; /* Grey background */
-  border: none; /* Remove border */
-  color: white; /* White text */
-  padding: 10px 20px; /* Smaller padding */
-  text-align: center; /* Centered text */
-  text-decoration: none; /* Remove underline */
-  display: inline-block; /* Make the buttons inline */
-  font-size: 16px; /* Change text size */
-  cursor: pointer; /* Pointer/hand icon */
-  transition-duration: 0.4s; /* Transition effects */
-  border-radius: 12px; /* Rounded corners */
-  margin: 0 10px; /* Add horizontal margin */
-  width: 50px; /* Fixed width */
-  box-sizing: border-box;
-  user-select: none; /* Prevent text selection */
-  outline: none; /* Remove outline */
-
-
-
-
-
-}
-
-input[type="text"] {
-  width: 40%;
-  padding: 5px 10px;
-  margin: 10px 0;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  transition: 0.5s;
-  font-size: small;
-
-}
-
-button:hover {
-  background-color: darkgrey; /* Dark grey background on hover */
-}
-span {
-  display: inline-block;
-  margin: 0 10px; /* Add horizontal margin */
-  width: 50px; /* Fixed width */
-  text-align: center;
-
-
-}
-
-
-.pagination-container {
+.navigation {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  padding: 20px 0;
+}
+
+.pagination {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+}
+
+.page-item {
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.page-item.active,
+.page-item:hover {
+  background-color: #ddd;
+}
+
+.page-link {
+  text-decoration: none;
+  color: black;
 }

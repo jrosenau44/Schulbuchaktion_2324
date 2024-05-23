@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {UserService} from "../service/user.service";
-import {Datasource} from "../datasources/datasource";
+import { Component, OnInit } from '@angular/core';
+import { Datasource } from '../datasources/datasource';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -8,32 +8,40 @@ import {Datasource} from "../datasources/datasource";
   styleUrls: ['./manage-users.component.css']
 })
 export class ManageUsersComponent implements OnInit {
-  public items: any[] = [];
-  public filteredItems: any[] = [];
-  public searchTermFirstName = '';
-  public searchTermLastName = '';
-  public searchTermEmail = '';
-  public searchTermRole = '';
+  public items: any[] = []; // Define the items array
   public dataSource: Datasource<UserService>;
+  public pagedItems: any[] = []; // This will hold the items for the current page
+  public pageSize: number = 5; // Number of items per page
+  public currentPage: number = 1; // Current page number
+  public maxPages: number; // Total number of pages
+
 
   constructor(private userService: UserService) {
     this.dataSource = new Datasource<UserService>(userService);
+    this.maxPages = 0; // Initialize maxPages
+
   }
 
   ngOnInit() {
     this.dataSource.load().then(data => {
-      this.items = data;
-      this.filteredItems = this.items;
+      this.items = data; // Assuming the load() method returns a Promise
+      this.maxPages = Math.ceil(this.items.length / this.pageSize); // Calculate maxPages
+      this.paginate();
+
     });
   }
-
-  filterItems() {
-    this.filteredItems = this.items.filter(item =>
-      item.firstName.toLowerCase().includes(this.searchTermFirstName.toLowerCase()) &&
-      item.lastName.toLowerCase().includes(this.searchTermLastName.toLowerCase()) &&
-      item.email.toLowerCase().includes(this.searchTermEmail.toLowerCase()) &&
-      item.role.name.toLowerCase().includes(this.searchTermRole.toLowerCase())
-    );
+  paginate() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.pagedItems = this.items.slice(start, end);
+    console.log('Paged items:', this.pagedItems); // Add this line
   }
 
+  changePage(newPage: number) {
+    if (newPage < 1 || newPage > this.maxPages) {
+      return;
+    }
+    this.currentPage = newPage;
+    this.paginate();
+  }
 }

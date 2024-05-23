@@ -12,18 +12,35 @@
 
 }
 
-input[type="text"] {
-  width: 40%;
-  padding: 5px 10px;
-  margin: 10px 0;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  transition: 0.5s;
-  font-size: small;
-
+.navigation {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
-input[type="text"]:focus {
-  border: 2px solid #555;
+.pagination {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
 }
+
+.page-item {
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.page-item.active,
+.page-item:hover {
+  background-color: #ddd;
+}
+
+.page-link {
+  text-decoration: none;
+  color: black;
+}
+
+
