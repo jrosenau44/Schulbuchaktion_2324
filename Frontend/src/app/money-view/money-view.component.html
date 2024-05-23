@@ -4,8 +4,8 @@
   <thead class="thead-dark">
   <tr>
     <th>Jahr
-      <input (input)="filterItems()" [(ngModel)]="searchTermYear" placeholder="Search" style="width: 50%; margin-top: 10px;"
-             type="text">
+      <input type="text" (input)="filterItems()" [(ngModel)]="searchTermYear" placeholder="Search" style="width: 50%; margin-top: 10px;"
+             >
     </th>
     <th>Preis inklusive Ebook
       <input (input)="filterItems()" [(ngModel)]="searchTermPriceInclusiveEbook" placeholder="Search" style="width: 50%; margin-top: 10px;"

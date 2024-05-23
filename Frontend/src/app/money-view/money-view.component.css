@@ -32,6 +32,18 @@ button {
 
 }
 
+input[type="text"] {
+  width: 40%;
+  padding: 5px 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: 0.5s;
+  font-size: small;
+
+}
+
 button:hover {
   background-color: darkgrey; /* Dark grey background on hover */
 }
