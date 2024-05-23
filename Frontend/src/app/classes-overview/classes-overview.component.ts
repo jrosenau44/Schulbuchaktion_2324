@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Datasource } from '../datasources/datasource';
-import { SchoolclassService } from '../service/schoolclass.service';
+import {Component, OnInit} from '@angular/core';
+import {Datasource} from '../datasources/datasource';
+import {SchoolclassService} from '../service/schoolclass.service';
 
 @Component({
   selector: 'app-class-overview',
@@ -8,9 +8,15 @@ import { SchoolclassService } from '../service/schoolclass.service';
   styleUrls: ['./classes-overview.component.css']
 })
 export class ClassesOverviewComponent implements OnInit {
-  public items: any[] = []; // Define the items array
-  public filteredItems: any[] = []; // Array to hold the filtered items
-  public searchTerm: string = ''; // Search term from the input field
+  public items: any[] = [];
+  public filteredItems: any[] = [];
+  public searchTerm: string = '';
+  public searchTermYear: string = '';
+  public searchTermName: string = '';
+  public searchTermStudentAmount: string = '';
+  public searchTermRepetent: string = '';
+  public searchTermBudget: string = '';
+  public searchTermUsedBudget: string = '';
   public dataSource: Datasource<SchoolclassService>;
 
   constructor(private schoolClassService: SchoolclassService) {
@@ -19,18 +25,19 @@ export class ClassesOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.load().then(data => {
-      this.items = data; // Populate the items array with data from the service
-      this.filteredItems = this.items; // Initially, all items are displayed
+      this.items = data;
+      this.filteredItems = this.items;
     });
   }
 
   filterItems() {
-    if (!this.searchTerm) {
-      this.filteredItems = this.items;
-    } else {
-      this.filteredItems = this.items.filter(item =>
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) // Change this line to search in other properties
-      );
-    }
+    this.filteredItems = this.items.filter(item =>
+      item.year.toString().includes(this.searchTermYear) &&
+      item.name.toLowerCase().includes(this.searchTermName.toLowerCase()) &&
+      item.studentAmount.toString().includes(this.searchTermStudentAmount) &&
+      item.repAmount.toString().includes(this.searchTermRepetent) &&
+      item.budget.toString().includes(this.searchTermBudget) &&
+      item.usedBudget.toString().includes(this.searchTermUsedBudget)
+    );
   }
 }
