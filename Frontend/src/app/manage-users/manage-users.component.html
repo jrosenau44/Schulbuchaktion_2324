@@ -11,7 +11,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of items">
+  <tr *ngFor="let item of pagedItems">
     <td>{{ item.firstName }}</td>
     <td>{{ item.lastName }}</td>
     <td>{{ item.email }}</td>
@@ -22,3 +22,19 @@
   </tr>
   </tbody>
 </table>
+
+<div class="navigation">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+      </li>
+      <li class="page-item" [class.active]="true">
+        <a class="page-link">{{ currentPage }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === maxPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
