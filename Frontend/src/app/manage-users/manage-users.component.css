@@ -27,3 +27,36 @@ input[type="text"] {
 input[type="text"]:focus {
   border: 2px solid #555;
 }
+
+.navigation {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-link.btn {
+  background-color: #808080;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin: 0 10px;
+}
+
+.page-link.btn:hover {
+  background-color: #606060;
+}
+
+.page-link.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}

@@ -21,6 +21,7 @@ export class MoneyViewComponent implements OnInit {
 
   public pageSize: number = 10;
   public currentPage: number = 1;
+  public maxPages: number = 0; // Initialize maxPages here
 
   constructor(private moneylistService: MoneylistService) {
     this.dataSource = new Datasource<MoneylistService>(moneylistService);
@@ -30,6 +31,7 @@ export class MoneyViewComponent implements OnInit {
     this.dataSource.load().then(data => {
       this.originalItems = data;
       this.items = [...this.originalItems];
+      this.maxPages = Math.ceil(this.items.length / this.pageSize); // Add this line
       this.paginate();
       this.filterItems();
     });
@@ -42,6 +44,9 @@ export class MoneyViewComponent implements OnInit {
   }
 
   changePage(newPage: number) {
+    if (newPage < 1 || newPage > this.maxPages) { // Update this line
+      return;
+    }
     this.currentPage = newPage;
     this.paginate();
   }

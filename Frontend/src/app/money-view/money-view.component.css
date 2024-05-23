@@ -63,3 +63,37 @@ span {
   align-items: center;
   width: 100%;
 }
+
+.navigation {
+  position: fixed; /* Fixed position */
+  top: 50%; /* Position from the top */
+  bottom: 0; /* Position from the bottom */
+  left: 0; /* Position from the left */
+  right: 0; /* Position from the right */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-link.btn {
+  background-color: #808080; /* Grey background */
+  color: #ffffff; /* White text */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding */
+  transition: background-color 0.3s ease; /* Transition effect */
+  margin: 0 10px; /* Add horizontal margin */
+}
+
+.page-link.btn:hover {
+  background-color: #606060; /* Darker grey on hover */
+}
+
+.page-link.btn:disabled {
+  background-color: #cccccc; /* Light grey background for disabled button */
+  cursor: not-allowed; /* No cursor on hover */
+}
