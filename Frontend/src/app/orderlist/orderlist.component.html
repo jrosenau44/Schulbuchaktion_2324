@@ -36,6 +36,9 @@
     <td *ngIf="item.teacherCopy !== null">{{ item.teacherCopy ? 'Yes' : 'No' }}</td>
     <td *ngIf="item.schoolClass.name">{{ item.schoolClass.name }}</td>
     <td *ngIf="item.count !== null">{{ item.count }}</td>
+    <td>
+      <button (click)="deleteItem(item)">Delete</button>
+    </td>
   </tr>
 
   </tbody>

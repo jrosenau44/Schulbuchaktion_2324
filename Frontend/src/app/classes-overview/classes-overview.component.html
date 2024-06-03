@@ -41,6 +41,9 @@
     <td>{{ item.repAmount}}</td>
     <td>{{ item.budget}}</td>
     <td>{{ item.usedBudget}}</td>
+    <td>
+      <button (click)="deleteItem(item)">Delete</button>
+    </td>
   </tr>
   </tbody>
 

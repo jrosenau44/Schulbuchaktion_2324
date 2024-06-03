@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable} from "rxjs";
 import {MoneylistEntry} from "../model/moneylistEntry";
 import { FindAll } from './findAll';
 import { UserService } from './user.service';
@@ -16,10 +16,16 @@ export class MoneylistService implements FindAll<MoneylistEntry>{
     return this._http.put<MoneylistEntry>(`${this.baseUrl}/update/${id}`, data, {headers: this.userService.getAuthorizationHeader()});
   }
 
-  public delete(id: number): Observable<MoneylistEntry> {
-    throw new Error('Method not implemented.');
+  public delete(key: any): Observable<MoneylistEntry> {
+    alert("Deleting item with id: " + key)
+    return this._http.delete<MoneylistEntry>(this.baseUrl + "/delete" + "/" + key, {headers: this.userService.getAuthorizationHeader()})
+      .pipe(
+        catchError(err => {
+          console.error('Error deleting item:', err);
+          throw err;
+        })
+      );
   }
-
   public findAll(): Observable<MoneylistEntry[]> {
     return this._http.get<MoneylistEntry[]>(this.baseUrl, {headers: this.userService.getAuthorizationHeader()});
   }

@@ -30,8 +30,9 @@ export class UserService {
     private _http: HttpClient, private router: Router,
   ) { }
 
-  public delete(id: number): Observable<UserService> {
-    throw new Error('Method not implemented.');
+  public delete(key: any): Observable<UserService> {
+    alert("Deleting item with id: " + key)
+    return this._http.delete<UserService>(this.baseUrl + "/delete" + "/" + key, { headers: this.getAuthorizationHeader() });
   }
 
   public findAll(): Observable<UserService[]> {
@@ -61,6 +62,7 @@ export class UserService {
 
   public getAuthorizationHeader(token: string | undefined = this.user?.token): HttpHeaders {
     const headers: HttpHeaders = new HttpHeaders();
+    alert(token)
     return headers.set("Authorization", `Bearer ${token}`)
   }
 

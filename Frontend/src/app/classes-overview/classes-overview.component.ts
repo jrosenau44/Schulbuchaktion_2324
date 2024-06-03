@@ -29,6 +29,13 @@ export class ClassesOverviewComponent implements OnInit {
       this.filteredItems = this.items;
     });
   }
+  deleteItem(item: any) {
+    alert(item.id)
+    this.schoolClassService.delete(item.id)
+    // Update the paged items
+    this.filterItems();
+
+  }
 
   filterItems() {
     this.filteredItems = this.items.filter(item =>

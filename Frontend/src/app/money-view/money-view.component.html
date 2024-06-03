@@ -32,6 +32,9 @@
     <td>{{ item.priceEbook }}</td>
     <td>{{ item.priceEbookPlus }}</td>
     <td>{{ item.book.shortTitle }}</td>
+    <td>
+      <button (click)="deleteItem(item)">Delete</button>
+    </td>
   </tr>
 
   <div class="pagination-container">

@@ -19,6 +19,13 @@ export class ManageUsersComponent implements OnInit {
   constructor(private userService: UserService) {
     this.dataSource = new Datasource<UserService>(userService);
   }
+  deleteItem(item: any) {
+    alert(item.id)
+    this.userService.delete(item.id)
+    // Update the paged items
+    this.filterItems();
+
+  }
 
   ngOnInit() {
     this.dataSource.load().then(data => {

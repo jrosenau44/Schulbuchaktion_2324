@@ -29,7 +29,16 @@ export class OrderlistComponent implements OnInit {
       this.items = data;
       this.filteredItems = this.items; // Initially, all items are displayed
     });
-  }filterItems() {
+  }
+  deleteItem(item: any) {
+    alert(item.id)
+    this.orderlistService.delete(item.id)
+    // Update the paged items
+    this.filterItems();
+
+  }
+
+  filterItems() {
     this.filteredItems = this.items.filter(item => {
       if (item.schoolClass) { // Check if schoolClass is not null
         console.log(item.schoolClass.name);

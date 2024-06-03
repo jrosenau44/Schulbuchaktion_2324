@@ -56,4 +56,11 @@ export class MoneyViewComponent implements OnInit {
     );
     this.paginate();
   }
+  deleteItem(item: any) {
+    alert(item.id)
+    this.moneylistService.delete(item.id)
+      // Update the paged items
+      this.paginate();
+
+  }
 }
