@@ -22,6 +22,7 @@ class SchoolClassController extends AbstractController
      * @return Response -> all schoolclasses
      */
 
+
     #[Route(
         path: "/schoolclass",
         name: "app_schoolclass",
