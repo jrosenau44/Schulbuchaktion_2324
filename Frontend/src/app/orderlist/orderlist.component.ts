@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Datasource } from '../datasources/datasource';
 import { OrderlistService } from '../service/orderlist.service';
+import {BookOrder} from "../model/bookOrder";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-orderlist',
@@ -27,16 +29,40 @@ export class OrderlistComponent implements OnInit {
   ngOnInit() {
     this.dataSource.load().then(data => {
       this.items = data;
-      this.filteredItems = this.items; // Initially, all items are displayed
+      this.filterItems();
     });
   }
   deleteItem(item: any) {
-    alert(item.id)
-    this.orderlistService.delete(item.id)
-    // Update the paged items
+    this.orderlistService.delete(item).subscribe();
     this.filterItems();
 
   }
+  addNewItem() {
+    let newItem = {
+      book: {
+        subject: { name: '' },
+        shortTitle: ''
+      },
+      ebook: null as null | boolean,
+      ebookPlus: null as null | boolean,
+      teacherCopy: null as null | boolean,
+      schoolClass: { name: '' },
+      count: null as null | number
+    };
+
+    newItem.book.subject.name = prompt('Enter subject name:') || '';
+    newItem.book.shortTitle = prompt('Enter short title:') || '';
+    newItem.ebook = confirm('Is it an ebook?');
+    newItem.ebookPlus = confirm('Is it an ebook plus?');
+    newItem.teacherCopy = confirm('Is it a teacher copy?');
+    newItem.schoolClass.name = prompt('Enter class name:') || '';
+    newItem.count = Number(prompt('Enter count:'));
+
+    this.items.push(newItem);
+
+    this.filterItems();
+  }
+
 
   filterItems() {
     this.filteredItems = this.items.filter(item => {

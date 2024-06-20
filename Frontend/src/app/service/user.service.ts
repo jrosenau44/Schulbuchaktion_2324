@@ -32,7 +32,7 @@ export class UserService {
 
   public delete(key: any): Observable<UserService> {
     alert("Deleting item with id: " + key)
-    return this._http.delete<UserService>(this.baseUrl + "/delete" + "/" + key, { headers: this.getAuthorizationHeader() });
+    return this._http.delete<UserService>(this.baseUrl + "/delete" + "/" + key.id, { headers: this.getAuthorizationHeader() });
   }
 
   public findAll(): Observable<UserService[]> {
@@ -62,7 +62,7 @@ export class UserService {
 
   public getAuthorizationHeader(token: string | undefined = this.user?.token): HttpHeaders {
     const headers: HttpHeaders = new HttpHeaders();
-    alert(token)
+
     return headers.set("Authorization", `Bearer ${token}`)
   }
 

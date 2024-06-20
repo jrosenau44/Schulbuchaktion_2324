@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { OrderFormComponent } from './orderlist/order-form-component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderlistComponent } from './orderlist/orderlist.component';
@@ -7,6 +8,7 @@ import { LoginComponent } from "./login/login.component";
 import { XlsImportComponent } from './xls-import/xls-import.component';
 import { LoginErrorAlertComponent } from "./login-error-alert/login-error-alert.component";
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,11 +20,18 @@ const routes: Routes = [
     { path: 'loginerror', component: LoginErrorAlertComponent },
     { path: 'navbar', component: NavBarComponent },
     { path: 'manageusers', component: ManageUsersComponent},
-    { path: '**', component: NotFoundComponent },
+  { path: 'order-form', component: OrderFormComponent },
+
+  { path: '**', component: NotFoundComponent },
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    declarations: [
+      OrderFormComponent,
+
+
+    ],
+    imports: [RouterModule.forRoot(routes), FormsModule],
     exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -16,6 +16,9 @@ export class OrderlistService implements FindAll<BookOrder> {
   update(id: number, data: BookOrder): Observable<BookOrder> {
     return this._http.put<BookOrder>(`${this.baseUrl}/update/${id}`, data, {headers: this.userService.getAuthorizationHeader()});
   }
+  public addOrder(data: BookOrder): Observable<BookOrder> {
+    return this._http.post<BookOrder>(`${this.baseUrl}/write`, data, {headers: this.userService.getAuthorizationHeader()});
+  }
 
   public findAll(): Observable<BookOrder[]> {
     return this._http.get<BookOrder[]>(this.baseUrl, {headers: this.userService.getAuthorizationHeader()});
@@ -25,16 +28,9 @@ export class OrderlistService implements FindAll<BookOrder> {
 
 
   public delete(key: any): Observable<BookOrder> {
-    const id = key.id;
-    alert("Deleting item with id: " + key)
-    alert(this.baseUrl + "/delete" + "/" + key)
+    alert("Key: " + key.id);
 
-    return this._http.delete(this.baseUrl + "/delete" + "/" + key, {headers: this.userService.getAuthorizationHeader()})
-      .pipe(
-        catchError(err => {
-          console.error('Error deleting item:', err);
-          throw err;
-        })
-      );
+    return this._http.delete(this.baseUrl + "/delete" + "/" + key.id, {headers: this.userService.getAuthorizationHeader()});
+
   }
 }

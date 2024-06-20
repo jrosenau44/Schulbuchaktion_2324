@@ -1,9 +1,9 @@
 <h1>Bestellübersicht</h1>
-
 <table class="table table-striped" style="width:100%" >
   <thead class="thead-dark">
   <tr>
-    <th>Fach
+    <th>Fach<button (click)="addNewItem()">Add New Item</button>
+
       <input type="text" [(ngModel)]="searchTermSubject" (input)="filterItems()" placeholder="Search" style="width: 50%; margin-top: 10px;">
     </th>
     <th>Buchtitel
@@ -40,6 +40,6 @@
       <button (click)="deleteItem(item)">Delete</button>
     </td>
   </tr>
-
+//test
   </tbody>
 </table>

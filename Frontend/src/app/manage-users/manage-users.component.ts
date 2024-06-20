@@ -20,8 +20,7 @@ export class ManageUsersComponent implements OnInit {
     this.dataSource = new Datasource<UserService>(userService);
   }
   deleteItem(item: any) {
-    alert(item.id)
-    this.userService.delete(item.id)
+    this.userService.delete(item).subscribe();
     // Update the paged items
     this.filterItems();
 

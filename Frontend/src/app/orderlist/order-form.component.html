@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit()" #orderForm="ngForm">
+  <div>
+    <label for="count">Count</label>
+    <input type="number" id="count" [(ngModel)]="order.count" name="count" required>
+  </div>
+  <div>
+    <label for="ebook">Ebook</label>
+    <input type="checkbox" id="ebook" [(ngModel)]="order.ebook" name="ebook">
+  </div>
+  <div>
+    <label for="ebookPlus">Ebook Plus</label>
+    <input type="checkbox" id="ebookPlus" [(ngModel)]="order.ebookPlus" name="ebookPlus">
+  </div>
+  <div>
+    <label for="teacherCopy">Teacher Copy</label>
+    <input type="checkbox" id="teacherCopy" [(ngModel)]="order.teacherCopy" name="teacherCopy">
+  </div>
+  <div>
+    <label for="price">Price</label>
+    <input type="number" id="price" [(ngModel)]="order.price" name="price" required>
+  </div>
+  <div>
+    <label for="schoolClass">School Class</label>
+    <select id="schoolClass" [(ngModel)]="order.schoolClass" name="schoolClass" required>
+      <option *ngFor="let class of classes" [value]="class.id">{{class.name}}</option>
+    </select>
+  </div>
+  <div>
+    <label for="book">Book</label>
+    <select id="book" [(ngModel)]="order.book" name="book" required>
+      <option *ngFor="let book of books" [value]="book.id">{{book.title}}</option>
+    </select>
+  </div>
+  <button type="submit">Submit</button>
+</form>

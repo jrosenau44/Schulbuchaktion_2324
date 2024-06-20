@@ -30,12 +30,13 @@ export class ClassesOverviewComponent implements OnInit {
     });
   }
   deleteItem(item: any) {
-    alert(item.id)
-    this.schoolClassService.delete(item.id)
+    this.schoolClassService.delete(item).subscribe();
     // Update the paged items
     this.filterItems();
 
   }
+
+
 
   filterItems() {
     this.filteredItems = this.items.filter(item =>

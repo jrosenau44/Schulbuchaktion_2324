@@ -20,7 +20,7 @@ export class SchoolclassService implements FindAll<SchoolClass>{
 
   public delete(key: any): Observable<SchoolClass> {
     alert("Deleting item with id: " + key)
-    return this._http.delete<SchoolClass>(this.baseUrl + "/delete" + "/" + key, {headers: this.userService.getAuthorizationHeader()})
+    return this._http.delete<SchoolClass>(this.baseUrl + "/delete" + "/" + key.id, {headers: this.userService.getAuthorizationHeader()})
       .pipe(
         catchError(err => {
           console.error('Error deleting item:', err);
